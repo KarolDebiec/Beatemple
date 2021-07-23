@@ -7,6 +7,10 @@ public class TriggerController : MonoBehaviour
     public GameObject note;
     public bool canTrigger;
     public SongController songController;
+    public Material BasicMaterial;
+    public Material TriggeredMaterial;
+    public GameObject TriggerIndicator;
+    public bool triggered = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +33,10 @@ public class TriggerController : MonoBehaviour
         }
     }
 
+    public void ChangeIndicator(Material mat)
+    {
+        TriggerIndicator.GetComponent<Renderer>().material = mat;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
