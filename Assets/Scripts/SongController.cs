@@ -51,10 +51,10 @@ public class SongController : MonoBehaviour
             {
                 combo++;
             }
-            else
-            {
-                combo=0;
-            }
+            /*else
+           {
+               combo = 0;
+           }*/
         }
         else if(trigger1Controller.triggered)
         {
@@ -72,10 +72,10 @@ public class SongController : MonoBehaviour
             {
                 combo++;
             }
-            else
+            /*else
             {
                 combo = 0;
-            }
+            }*/
         }
         else if (trigger2Controller.triggered)
         {
@@ -93,10 +93,10 @@ public class SongController : MonoBehaviour
             {
                 combo++;
             }
-            else
-            {
-                combo = 0;
-            }
+            /*else
+           {
+               combo = 0;
+           }*/
         }
         else if (trigger3Controller.triggered)
         {
@@ -114,18 +114,18 @@ public class SongController : MonoBehaviour
             {
                 combo++;
             }
-            else
+            /*else
             {
                 combo = 0;
-            }
+            }*/
         }
         else if (trigger4Controller.triggered)
         {
             trigger4Controller.ChangeIndicator(trigger4Controller.BasicMaterial);
             trigger4Controller.triggered = false;
         }
-        scoreText.text = score.ToString("2f");
-        comboText.text = combo.ToString("2f");
+        scoreText.text = score.ToString();
+        comboText.text = combo.ToString();
     }
     public void Miss()
     {
