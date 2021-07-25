@@ -9,13 +9,18 @@ public class TargetScript : MonoBehaviour
     public bool showed =false;
     public Vector3 dir;
     public float speed;
-    void Start()
+    public bool isLast = false;
+    private SongController songController;
+    private void Start()
     {
-
+        songController = GameObject.FindWithTag("GameController").GetComponent<SongController>();
     }
-
     public void Destruction()
     {
+        if(isLast)
+        {
+            songController.WinGame();
+        }
         gameObject.SetActive(false);
     }
     void FixedUpdate()
@@ -34,6 +39,10 @@ public class TargetScript : MonoBehaviour
     }
     public void MissedNote()
     {
+        if (isLast)
+        {
+            songController.WinGame();
+        }
         Debug.Log("Missed this note");
     }
 }

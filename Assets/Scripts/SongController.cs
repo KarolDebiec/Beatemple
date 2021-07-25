@@ -17,6 +17,7 @@ public class SongController : MonoBehaviour
     private TriggerController trigger3Controller;
     private TriggerController trigger4Controller;
     public int combo = 0;
+    public int maxCombo = 0;
     public float score = 0;
     public Text comboText;
     public Text scoreText;
@@ -41,6 +42,13 @@ public class SongController : MonoBehaviour
     public Image healthFill;
     public GameObject[] priestsInScene;
     public GameObject lostPanel;
+    public Text comboLoseText;
+    public Text scoreLoseText;
+    public Text comboWinText;
+    public Text scoreWinText;
+    public GameObject comboPanel;
+    public GameObject scorePanel;
+    public GameObject winPanel;
     void Start()
     {
         notesInScene = GameObject.FindGameObjectsWithTag("Note");
@@ -80,6 +88,10 @@ public class SongController : MonoBehaviour
             if (trigger1Controller.TriggerNote())
             {
                 combo++;
+                if(combo >= maxCombo)
+                {
+                    maxCombo = combo;
+                }
             }
             if(HoldTime1 > maxTimeHold)
             {
@@ -122,6 +134,10 @@ public class SongController : MonoBehaviour
             if (trigger2Controller.TriggerNote())
             {
                 combo++;
+                if (combo >= maxCombo)
+                {
+                    maxCombo = combo;
+                }
             }
             if (HoldTime2 > maxTimeHold)
             {
@@ -163,6 +179,10 @@ public class SongController : MonoBehaviour
             if (trigger3Controller.TriggerNote())
             {
                 combo++;
+                if (combo >= maxCombo)
+                {
+                    maxCombo = combo;
+                }
             }
             if (HoldTime3 > maxTimeHold)
             {
@@ -204,6 +224,10 @@ public class SongController : MonoBehaviour
             if (trigger4Controller.TriggerNote())
             {
                 combo++;
+                if (combo >= maxCombo)
+                {
+                    maxCombo = combo;
+                }
             }
             if (HoldTime4 > maxTimeHold)
             {
@@ -249,13 +273,23 @@ public class SongController : MonoBehaviour
     {
         Time.timeScale = 0;
         audioSource.Stop();
+        comboLoseText.text = maxCombo.ToString();
+        scoreLoseText.text = scoreText.text;
+        comboPanel.SetActive(false);
+        scorePanel.SetActive(false);
         lostPanel.SetActive(true);
         Debug.Log("Lost game");
     }
-    public void Wololo()
+    public void WinGame()
     {
 
+        comboPanel.SetActive(false);
+        scorePanel.SetActive(false);
+        comboWinText.text = maxCombo.ToString();
+        scoreWinText.text = scoreText.text;
+        winPanel.SetActive(true);
     }
+
     private IEnumerator WaitForPlayingSong(float waitTime)
     {
         Debug.Log("Started coroutine");
