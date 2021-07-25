@@ -23,9 +23,12 @@ public class TriggerController : MonoBehaviour
             note.GetComponent<TargetScript>().Destruction();
             note = null;
             canTrigger = false;
+            if(songController.health <=90)
+            {
+                songController.health += 10;
+            }
             songController.score += 100 * ((float)(songController.combo+1)/10);
             return true;
-
         }
         else
         {

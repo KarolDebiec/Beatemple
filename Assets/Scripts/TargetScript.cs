@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class TargetScript : MonoBehaviour
 {
+    public float showLine=10;
+    public bool showed =false;
     public Vector3 dir;
     public float speed;
     void Start()
@@ -16,9 +18,19 @@ public class TargetScript : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-    void Update()
+    void FixedUpdate()
     {
         transform.position += dir * speed * Time.deltaTime;
+        if(transform.position.z < showLine && !showed)
+        {
+            showed = true;
+            ShowNote();
+        }
+    }
+    public void ShowNote()
+    {
+        Debug.Log("Showed this note");
+        gameObject.GetComponent<Renderer>().enabled = true;
     }
     public void MissedNote()
     {
